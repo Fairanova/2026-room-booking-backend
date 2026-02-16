@@ -1,0 +1,38 @@
+# .NET build artifacts
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+.vscode/
+
+# Rider
+.idea/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Environment files
+.env
+appsettings.Development.json
+appsettings.Production.json
+!appsettings.json
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
