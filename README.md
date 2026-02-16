@@ -101,9 +101,9 @@ Aplikasi akan otomatis seed data berikut saat pertama kali dijalankan:
 
 **Users:**
 
-- Admin: `username: admin`, `password: admin123`
-- Staff: `username: staff1`, `password: password123`
-- Student: `username: student1`, `password: password123`
+- Admin: `username: admin`, `password: Admin123`
+- Staff: `username: staff001`, `password: Staff123`
+- Student: `username: student001`, `password: Student123`
 
 **Rooms:**
 
