@@ -14,6 +14,7 @@ public class Booking
     public TimeOnly EndTime { get; set; }
     public string Purpose { get; set; } = string.Empty;
     public string? Description { get; set; }
+    public string? RejectionReason { get; set; }
     
     // Status Management
     public BookingStatus Status { get; set; } = BookingStatus.Pending;
