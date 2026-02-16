@@ -21,7 +21,7 @@ public static class DbSeeder
                 Id = Guid.NewGuid(),
                 Username = "admin",
                 Email = "admin@university.edu",
-                PasswordHash = "$2a$11$XqVH5rqQZ5Y5K5K5K5K5Ke5K5K5K5K5K5K5K5K5K5K5K5K5K5K", // "Admin123"
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123"),
                 FullName = "Administrator",
                 Role = UserRole.Admin,
                 CreatedAt = DateTime.UtcNow,
@@ -32,7 +32,7 @@ public static class DbSeeder
                 Id = Guid.NewGuid(),
                 Username = "staff001",
                 Email = "staff001@university.edu",
-                PasswordHash = "$2a$11$XqVH5rqQZ5Y5K5K5K5K5Ke5K5K5K5K5K5K5K5K5K5K5K5K5K5K", // "Staff123"
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Staff123"),
                 FullName = "John Staff",
                 Role = UserRole.Staff,
                 CreatedAt = DateTime.UtcNow,
@@ -43,7 +43,7 @@ public static class DbSeeder
                 Id = Guid.NewGuid(),
                 Username = "student001",
                 Email = "student001@university.edu",
-                PasswordHash = "$2a$11$XqVH5rqQZ5Y5K5K5K5K5Ke5K5K5K5K5K5K5K5K5K5K5K5K5K5K", // "Student123"
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Student123"),
                 FullName = "Jane Student",
                 Role = UserRole.Student,
                 CreatedAt = DateTime.UtcNow,
