@@ -16,6 +16,21 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Seed database in Development environment
+if (app.Environment.IsDevelopment())
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        
+        // Ensure database is created and migrations are applied
+        context.Database.Migrate();
+        
+        // Seed data
+        DbSeeder.SeedData(context);
+    }
+}
+
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
