@@ -146,15 +146,6 @@ dotnet ef database update
 - [ ] Booking approval workflow
 - [ ] Room availability checking
 
-## 📖 Dokumentasi
-
-Dokumentasi lengkap tersedia di folder `docs/`:
-
-- **[issue-01-inisialisasi-project.md](docs/issue-01-inisialisasi-project.md)** - Inisialisasi proyek
-- **[issue-02-setup-postgresql.md](docs/issue-02-setup-postgresql.md)** - Setup database PostgreSQL
-- **[issue-04-domain-models.md](docs/issue-04-domain-models.md)** - Domain models & ERD
-- **[restructuring-to-monolith.md](docs/restructuring-to-monolith.md)** - Perubahan dari Clean Architecture ke Monolith
-
 ## 🔥 Quick Start Commands
 
 ```bash
