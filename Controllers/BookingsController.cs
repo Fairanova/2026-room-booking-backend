@@ -284,3 +284,25 @@ public class BookingsController : ControllerBase
         return NoContent();
     }
 }
+
+
+// 1️⃣ Pending (Status: 1)
+// Arti: Menunggu persetujuan
+// Kapan: Status default saat mahasiswa/user pertama kali membuat booking ruangan
+// Aksi: Admin/Staff perlu review dan approve/reject
+// Contoh: Mahasiswa booking ruangan untuk diskusi kelompok → Status: Pending
+// 2️⃣ Approved (Status: 2)
+// Arti: Disetujui oleh Admin/Staff
+// Kapan: Setelah Admin/Staff menyetujui booking yang Pending
+// Aksi: Ruangan sudah terkonfirmasi boleh digunakan
+// Contoh: Admin approve booking → Status: Approved
+// 3️⃣ Rejected (Status: 3)
+// Arti: Ditolak oleh Admin/Staff
+// Kapan: Setelah Admin/Staff menolak booking (misal bentrok waktu, alasan tidak valid, dll)
+// Aksi: Booking tidak bisa digunakan. RejectionReason akan berisi alasan penolakan
+// Contoh: Admin reject dengan alasan "Waktu bentrok" → Status: Rejected
+// 4️⃣ Cancelled (Status: 4)
+// Arti: Dibatalkan oleh user sendiri
+// Kapan: User membatalkan booking mereka sendiri (sebelum atau setelah approved)
+// Aksi: Booking tidak jadi digunakan
+// Contoh: Mahasiswa batal pakai ruangan → Status: Cancelled
