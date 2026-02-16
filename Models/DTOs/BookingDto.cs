@@ -7,6 +7,7 @@ public class BookingDto
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
     public string UserFullName { get; set; } = string.Empty;
+    public UserRole UserRole { get; set; } // Added Role property
     public Guid RoomId { get; set; }
     public string RoomName { get; set; } = string.Empty;
     public string RoomCode { get; set; } = string.Empty;
