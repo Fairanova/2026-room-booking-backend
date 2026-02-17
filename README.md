@@ -4,29 +4,29 @@ Backend API untuk sistem peminjaman ruangan berbasis ASP.NET Core dengan Postgre
 
 ## 📋 Deskripsi
 
-Aplikasi ini adalah REST API untuk mengelola peminjaman ruangan di institusi pendidikan. Sistem ini mendukung tiga role user (Student, Staff, Admin) dengan fitur autentikasi JWT, manajemen ruangan, dan approval workflow untuk booking.
+Aplikasi ini adalah REST API untuk mengelola peminjaman ruangan di institusi pendidikan. Sistem ini mendukung tiga peran pengguna (Mahasiswa, Staf, Admin) dengan fitur autentikasi JWT, manajemen ruangan, dan alur persetujuan untuk peminjaman.
 
 ## ✨ Fitur Utama
 
-- 🔐 **Autentikasi & Otorisasi** - JWT Bearer authentication dengan role-based access control
-- 👥 **Multi-Role System** - Student, Staff, dan Admin dengan hak akses berbeda
-- 🏛️ **Manajemen Ruangan** - CRUD operations untuk data ruangan
-- 📅 **Booking System** - Pembuatan booking dengan validasi overlap dan approval workflow
-- ✅ **Approval Workflow** - Admin/Staff dapat approve/reject booking
-- 🔍 **Search & Filter** - Pencarian ruangan, filtering, dan pagination
-- 📊 **Status Tracking** - Tracking status booking (Pending, Approved, Rejected, Cancelled)
+- 🔐 **Autentikasi & Otorisasi** - Autentikasi JWT Bearer dengan kontrol akses berbasis peran
+- 👥 **Sistem Multi-Peran** - Mahasiswa, Staf, dan Admin dengan hak akses berbeda
+- 🏛️ **Manajemen Ruangan** - Operasi CRUD untuk data ruangan
+- 📅 **Sistem Peminjaman** - Pembuatan peminjaman dengan validasi tumpang tindih dan alur persetujuan
+- ✅ **Alur Persetujuan** - Admin/Staf dapat menyetujui/menolak peminjaman
+- 🔍 **Pencarian & Filter** - Pencarian ruangan, penyaringan, dan paginasi
+- 📊 **Pelacakan Status** - Pelacakan status peminjaman (Menunggu, Disetujui, Ditolak, Dibatalkan)
 
-## 🛠️ Tech Stack
+## 🛠️ Teknologi yang Digunakan
 
 - **.NET 10.0** - Framework utama
-- **ASP.NET Core Web API** - REST API framework
-- **Entity Framework Core 9.0** - ORM
+- **ASP.NET Core Web API** - Framework REST API
+- **Entity Framework Core 9.0** - ORM (Object-Relational Mapping)
 - **PostgreSQL** - Database
-- **JWT Bearer** - Authentication
-- **BCrypt** - Password hashing
-- **Swagger/OpenAPI** - API documentation
+- **JWT Bearer** - Autentikasi
+- **BCrypt** - Hashing password
+- **Swagger/OpenAPI** - Dokumentasi API
 
-## 📦 Dependencies
+## 📦 Dependensi
 
 ```xml
 <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
@@ -38,15 +38,15 @@ Aplikasi ini adalah REST API untuk mengelola peminjaman ruangan di institusi pen
 <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.1" />
 ```
 
-## 🚀 Getting Started
+## 🚀 Memulai (Getting Started)
 
-### Prerequisites
+### Prasyarat
 
 - .NET 10 SDK atau .NET 9 SDK
 - PostgreSQL 12+
 - Git
 
-### Installation
+### Instalasi
 
 1. **Clone repository**
 
@@ -63,17 +63,17 @@ Buat database PostgreSQL:
 CREATE DATABASE room_booking_db;
 ```
 
-3. **Configure Connection String**
+3. **Konfigurasi Connection String**
 
 Update `appsettings.json`:
 
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Database=room_booking_db;Username=postgres;Password=your_password"
+    "DefaultConnection": "Host=localhost;Database=room_booking_db;Username=postgres;Password=password_anda"
   },
   "Jwt": {
-    "Key": "your-secret-key-min-32-characters-long",
+    "Key": "kunci-rahasia-anda-minimal-32-karakter",
     "Issuer": "RoomBookingApi",
     "Audience": "RoomBookingClient",
     "ExpiryInMinutes": "1440"
@@ -81,13 +81,13 @@ Update `appsettings.json`:
 }
 ```
 
-4. **Run Migrations**
+4. **Jalankan Migrasi**
 
 ```bash
 dotnet ef database update
 ```
 
-5. **Run Application**
+5. **Jalankan Aplikasi**
 
 ```bash
 dotnet run
@@ -95,60 +95,60 @@ dotnet run
 
 API akan berjalan di `http://localhost:5001`
 
-### Seeded Data
+### Data Awal (Seeded Data)
 
-Aplikasi akan otomatis seed data berikut saat pertama kali dijalankan:
+Aplikasi akan otomatis mengisi data berikut saat pertama kali dijalankan:
 
-**Users:**
+**Pengguna (Users):**
 
 - Admin: `username: admin`, `password: Admin123`
-- Staff: `username: staff001`, `password: Staff123`
-- Student: `username: student001`, `password: Student123`
+- Staf: `username: staff001`, `password: Staff123`
+- Mahasiswa: `username: student001`, `password: Student123`
 
-**Rooms:**
+**Ruangan (Rooms):**
 
 - 3 ruangan contoh (Lab Komputer, Ruang Meeting, Auditorium)
 
-## 📖 API Documentation
+## 📖 Dokumentasi API
 
-### Base URL
+### URL Dasar
 
 ```
 http://localhost:5001/api
 ```
 
-### Authentication
+### Autentikasi
 
-Semua endpoint yang dilindungi memerlukan JWT token di header:
+Semua endpoint yang dilindungi memerlukan token JWT di header:
 
 ```
-Authorization: Bearer {your-jwt-token}
+Authorization: Bearer {token-jwt-anda}
 ```
 
 ---
 
-## 🔐 Authentication Endpoints
+## 🔐 Endpoint Autentikasi
 
-### 1. Register
+### 1. Registrasi
 
 **POST** `/api/auth/register`
 
-**Request Body:**
+**Body Request:**
 
 ```json
 {
-  "username": "john_doe",
-  "email": "john@example.com",
-  "password": "SecurePass123!",
-  "fullName": "John Doe",
+  "username": "budi_santoso",
+  "email": "budi@example.com",
+  "password": "PasswordAman123!",
+  "fullName": "Budi Santoso",
   "role": 1
 }
 ```
 
-**Role Values:**
+**Nilai Peran (Role):**
 
-- `1` = Student
-- `2` = Staff
+- `1` = Mahasiswa (Student)
+- `2` = Staf (Staff)
 - `3` = Admin
 
 **Response:** `201 Created`
@@ -156,9 +156,9 @@ Authorization: Bearer {your-jwt-token}
 ```json
 {
   "id": "uuid",
-  "username": "john_doe",
-  "email": "john@example.com",
-  "fullName": "John Doe",
+  "username": "budi_santoso",
+  "email": "budi@example.com",
+  "fullName": "Budi Santoso",
   "role": 1
 }
 ```
@@ -169,12 +169,12 @@ Authorization: Bearer {your-jwt-token}
 
 **POST** `/api/auth/login`
 
-**Request Body:**
+**Body Request:**
 
 ```json
 {
   "username": "admin",
-  "password": "admin123"
+  "password": "Admin123"
 }
 ```
 
@@ -195,7 +195,7 @@ Authorization: Bearer {your-jwt-token}
 
 ---
 
-### 3. Get Profile
+### 3. Lihat Profil
 
 **GET** `/api/auth/profile`
 
@@ -215,18 +215,18 @@ Authorization: Bearer {your-jwt-token}
 
 ---
 
-## 🏛️ Rooms Endpoints
+## 🏛️ Endpoint Ruangan (Rooms)
 
-### 1. Get All Rooms (Public)
+### 1. Lihat Semua Ruangan (Publik)
 
 **GET** `/api/rooms?page=1&pageSize=10&search=Lab&location=Gedung A`
 
-**Query Parameters:**
+**Parameter Query:**
 
-- `page` (optional, default: 1)
-- `pageSize` (optional, default: 10, max: 50)
-- `search` (optional) - Search by name or description
-- `location` (optional) - Filter by location
+- `page` (opsional, default: 1)
+- `pageSize` (opsional, default: 10, maks: 50)
+- `search` (opsional) - Cari berdasarkan nama atau deskripsi
+- `location` (opsional) - Filter berdasarkan lokasi
 
 **Response:** `200 OK`
 
@@ -252,7 +252,7 @@ Authorization: Bearer {your-jwt-token}
 
 ---
 
-### 2. Get Room by ID (Public)
+### 2. Lihat Ruangan berdasarkan ID (Publik)
 
 **GET** `/api/rooms/{id}`
 
@@ -260,15 +260,15 @@ Authorization: Bearer {your-jwt-token}
 
 ---
 
-### 3. Check Room Availability (Public)
+### 3. Cek Ketersediaan Ruangan (Publik)
 
 **GET** `/api/rooms/available?date=2026-02-20&startTime=09:00&endTime=11:00`
 
-**Query Parameters:**
+**Parameter Query:**
 
-- `date` (required, format: YYYY-MM-DD)
-- `startTime` (required, format: HH:mm)
-- `endTime` (required, format: HH:mm)
+- `date` (wajib, format: YYYY-MM-DD)
+- `startTime` (wajib, format: HH:mm)
+- `endTime` (wajib, format: HH:mm)
 
 **Response:** `200 OK`
 
@@ -285,20 +285,20 @@ Authorization: Bearer {your-jwt-token}
 
 ---
 
-### 4. Create Room (Admin Only)
+### 4. Tambah Ruangan (Khusus Admin)
 
 **POST** `/api/rooms`
 
-**Headers:** `Authorization: Bearer {admin-token}`
+**Headers:** `Authorization: Bearer {token-admin}`
 
-**Request Body:**
+**Body Request:**
 
 ```json
 {
   "name": "Lab Komputer 2",
   "location": "Gedung A Lt. 3",
   "capacity": 30,
-  "description": "Lab programming",
+  "description": "Lab pemrograman",
   "amenities": "Proyektor, AC, WiFi"
 }
 ```
@@ -307,42 +307,42 @@ Authorization: Bearer {your-jwt-token}
 
 ---
 
-### 5. Update Room (Admin Only)
+### 5. Update Ruangan (Khusus Admin)
 
 **PUT** `/api/rooms/{id}`
 
-**Headers:** `Authorization: Bearer {admin-token}`
+**Headers:** `Authorization: Bearer {token-admin}`
 
 ---
 
-### 6. Delete Room (Admin Only)
+### 6. Hapus Ruangan (Khusus Admin)
 
 **DELETE** `/api/rooms/{id}`
 
-**Headers:** `Authorization: Bearer {admin-token}`
+**Headers:** `Authorization: Bearer {token-admin}`
 
 **Response:** `204 No Content`
 
 ---
 
-## 📅 Bookings Endpoints
+## 📅 Endpoint Peminjaman (Bookings)
 
-### 1. Get Bookings
+### 1. Lihat Peminjaman
 
 **GET** `/api/bookings?page=1&pageSize=10&status=1`
 
 **Headers:** `Authorization: Bearer {token}`
 
-**Query Parameters:**
+**Parameter Query:**
 
-- `page` (optional, default: 1)
-- `pageSize` (optional, default: 10)
-- `status` (optional) - Filter by status
+- `page` (opsional, default: 1)
+- `pageSize` (opsional, default: 10)
+- `status` (opsional) - Filter berdasarkan status
 
-**Access Control:**
+**Kontrol Akses:**
 
-- **Student**: Hanya booking milik sendiri
-- **Admin/Staff**: Semua booking
+- **Mahasiswa**: Hanya melihat booking milik sendiri
+- **Admin/Staf**: Melihat semua booking
 
 **Response:** `200 OK`
 
@@ -355,7 +355,7 @@ Authorization: Bearer {your-jwt-token}
       "startTime": "09:00:00",
       "endTime": "11:00:00",
       "purpose": "Diskusi Kelompok",
-      "description": "Diskusi project akhir",
+      "description": "Diskusi tugas akhir",
       "status": 1,
       "rejectionReason": null,
       "createdAt": "2026-02-16T10:00:00Z",
@@ -366,7 +366,7 @@ Authorization: Bearer {your-jwt-token}
       },
       "user": {
         "id": "uuid",
-        "username": "student1",
+        "username": "student001",
         "fullName": "Student One"
       }
     }
@@ -380,13 +380,13 @@ Authorization: Bearer {your-jwt-token}
 
 ---
 
-### 2. Create Booking
+### 2. Buat Peminjaman
 
 **POST** `/api/bookings`
 
 **Headers:** `Authorization: Bearer {token}`
 
-**Request Body:**
+**Body Request:**
 
 ```json
 {
@@ -395,28 +395,28 @@ Authorization: Bearer {your-jwt-token}
   "startTime": "09:00",
   "endTime": "11:00",
   "purpose": "Diskusi Kelompok",
-  "description": "Diskusi project akhir"
+  "description": "Diskusi tugas akhir"
 }
 ```
 
-**Validations:**
+**Validasi:**
 
-- Booking date harus hari ini atau masa depan
-- Start time harus sebelum end time
-- Minimum durasi 30 menit
-- Tidak boleh overlap dengan booking lain yang approved
+- Tanggal booking harus hari ini atau di masa depan
+- Waktu mulai harus sebelum waktu selesai
+- Durasi minimal 30 menit
+- Tidak boleh bentrok dengan booking lain yang sudah disetujui
 
 **Response:** `201 Created`
 
 ---
 
-### 3. Update Booking Status (Admin/Staff Only)
+### 3. Update Status Peminjaman (Khusus Admin/Staf)
 
 **PUT** `/api/bookings/{id}/status`
 
-**Headers:** `Authorization: Bearer {admin-or-staff-token}`
+**Headers:** `Authorization: Bearer {token-admin-atau-staf}`
 
-**Request Body (Approve):**
+**Body Request (Setujui):**
 
 ```json
 {
@@ -424,7 +424,7 @@ Authorization: Bearer {your-jwt-token}
 }
 ```
 
-**Request Body (Reject):**
+**Body Request (Tolak):**
 
 ```json
 {
@@ -433,81 +433,81 @@ Authorization: Bearer {your-jwt-token}
 }
 ```
 
-**Status Values:**
+**Nilai Status:**
 
-- `2` = Approved
-- `3` = Rejected (wajib sertakan rejectionReason)
+- `2` = Disetujui (Approved)
+- `3` = Ditolak (Rejected) - wajib sertakan rejectionReason
 
 **Response:** `200 OK`
 
 ---
 
-### 4. Cancel Booking
+### 4. Batalkan Peminjaman
 
 **DELETE** `/api/bookings/{id}`
 
 **Headers:** `Authorization: Bearer {token}`
 
-**Access Control:**
+**Kontrol Akses:**
 
-- **Student**: Hanya bisa cancel booking sendiri yang status Pending
-- **Admin/Staff**: Bisa cancel booking apa saja
+- **Mahasiswa**: Hanya bisa membatalkan booking sendiri yang statusnya Masih Menunggu (Pending)
+- **Admin/Staf**: Bisa membatalkan booking apa saja
 
 **Response:** `204 No Content`
 
 ---
 
-## 📊 Booking Status Flow
+## 📊 Alur Status Peminjaman
 
 ```
-User creates booking
+Pengguna membuat booking
         ↓
-   [1: PENDING] ━━━━━━━━━━━━━━━┐
-        ↓                      ↓
-  Admin/Staff Review      User Cancel
-        ↓                      ↓
-   ┌────┴────┐          [4: CANCELLED]
+   [1: MENUNGGU] ━━━━━━━━━━━━━━━┐
+        ↓                       ↓
+  Admin/Staf Review      Pengguna Batal
+        ↓                       ↓
+   ┌────┴────┐          [4: DIBATALKAN]
    ↓         ↓
-[2: APPROVED] [3: REJECTED]
+[2: DISETUJUI] [3: DITOLAK]
 ```
 
-**Status Codes:**
+**Kode Status:**
 
-1. **Pending** - Menunggu approval
-2. **Approved** - Disetujui oleh Admin/Staff
-3. **Rejected** - Ditolak (dengan rejection reason)
-4. **Cancelled** - Dibatalkan oleh user
+1. **Pending** - Menunggu persetujuan
+2. **Approved** - Disetujui oleh Admin/Staf
+3. **Rejected** - Ditolak (dengan alasan penolakan)
+4. **Cancelled** - Dibatalkan oleh pengguna
 
 ---
 
-## 🧪 Testing dengan Swagger
+## 🧪 Pengujian dengan Swagger
 
 1. Buka browser ke `http://localhost:5001/swagger`
 2. Login via endpoint `POST /api/auth/login`
-3. Copy token dari response
+3. Salin token dari response
 4. Klik tombol **"Authorize"** (🔒 di pojok kanan atas)
-5. Masukkan: `Bearer {your-token}`
+5. Masukkan: `Bearer {token-anda}`
 6. Klik **Authorize** → **Close**
-7. Test semua endpoint!
+7. Uji semua endpoint!
 
 ---
 
-## 🗄️ Database Schema
+## 🗄️ Skema Database
 
-### Users Table
+### Tabel Users
 
 ```
 - Id (UUID, PK)
-- Username (string, unique)
-- Email (string, unique)
+- Username (string, unik)
+- Email (string, unik)
 - PasswordHash (string)
 - FullName (string)
-- Role (int: 1=Student, 2=Staff, 3=Admin)
+- Role (int: 1=Mahasiswa, 2=Staf, 3=Admin)
 - CreatedAt (datetime)
 - UpdatedAt (datetime)
 ```
 
-### Rooms Table
+### Tabel Rooms
 
 ```
 - Id (UUID, PK)
@@ -521,7 +521,7 @@ User creates booking
 - UpdatedAt (datetime)
 ```
 
-### Bookings Table
+### Tabel Bookings
 
 ```
 - Id (UUID, PK)
@@ -540,29 +540,29 @@ User creates booking
 
 ---
 
-## 🔒 Security
+## 🔒 Keamanan
 
-- **Password Hashing**: BCrypt dengan work factor 12
-- **JWT Expiry**: Default 24 jam (configurable)
-- **Role-Based Access**: Endpoint protection menggunakan `[Authorize(Roles = "...")]`
-- **Input Validation**: Data Annotations di semua DTOs
-
----
-
-## 📝 License
-
-MIT License - feel free to use for educational purposes.
+- **Hashing Password**: BCrypt dengan work factor 12
+- **Kedaluwarsa JWT**: Default 24 jam (dapat dikonfigurasi)
+- **Akses Berbasis Peran**: Perlindungan endpoint menggunakan `[Authorize(Roles = "...")]`
+- **Validasi Input**: Data Annotations di semua DTO
 
 ---
 
-## 👤 Author
+## 📝 Lisensi
 
-Developed by **Faira** - [GitHub](https://github.com/Fairanova)
+Lisensi MIT - silakan gunakan untuk tujuan pendidikan.
 
 ---
 
-## 🙏 Acknowledgments
+## 👤 Pembuat
 
-- ASP.NET Core Documentation
-- Entity Framework Core Documentation
-- JWT.io for JWT debugging
+Dikembangkan oleh **Faira** - [GitHub](https://github.com/Fairanova)
+
+---
+
+## 🙏 Ucapan Terima Kasih
+
+- Dokumentasi ASP.NET Core
+- Dokumentasi Entity Framework Core
+- JWT.io untuk debugging JWT
